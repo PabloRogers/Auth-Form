@@ -63,10 +63,18 @@ export default function FormDemo() {
       }
     } catch (err: any) {
       if (isClerkAPIResponseError(err)) {
-        const errorMessage = err.errors[0]?.message || "An error occurred";
-        toast.error(errorMessage);
+        switch (err.errors[0].code) {
+          case "identifier_password_mismatch":
+            toast.error("Invalid email or password");
+            break;
+          default:
+            toast.error(err.errors[0]?.message);
+            break;
+        }
+      } else {
+        toast.error("An unexpected error occurred. Please try again.");
+        console.error(JSON.stringify(err, null, 2));
       }
-      console.error(JSON.stringify(err, null, 2));
     }
   };
 
