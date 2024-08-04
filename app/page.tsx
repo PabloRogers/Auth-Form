@@ -9,7 +9,7 @@ export default async function Home() {
     <div>
       <div>Hello {user?.primaryEmailAddress?.emailAddress}</div>
       <div>
-        <ThemeToggle />
+        
         <SignOutButton />
       </div>
     </div>
