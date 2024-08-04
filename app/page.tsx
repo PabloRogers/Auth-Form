@@ -9,7 +9,6 @@ export default async function Home() {
     <div>
       <div>Hello {user?.primaryEmailAddress?.emailAddress}</div>
       <div>
-        
         <SignOutButton />
       </div>
     </div>
