@@ -1,7 +1,4 @@
 "use client";
-
-import { useState } from "react";
-
 import EmailVerificationForm from "./EmailVerificationForm";
 import { SubmitHandler } from "react-hook-form";
 import {
@@ -35,15 +32,15 @@ export default function SignUpForm() {
       nextStep();
     } catch (err: any) {
       if (isClerkAPIResponseError(err)) {
-        const errorMessage = err.errors[0]?.message || "An error occurred";
-        toast.error(errorMessage);
-        // if (err.errors[0]?.code === "form_identifier_exists") {
-        //   form.setError("email", {
-        //     message: "Email already exists",
-        //   });
-        // }
+        switch (err.errors[0].code) {
+          default:
+            toast.error(err.errors[0]?.message);
+            break;
+        }
+      } else {
+        toast.error("An unexpected error occurred. Please try again.");
+        console.log(err);
       }
-      console.error(JSON.stringify(err, null, 2));
     }
   };
 
@@ -67,15 +64,15 @@ export default function SignUpForm() {
       nextStep();
     } catch (err: any) {
       if (isClerkAPIResponseError(err)) {
-        const errorMessage = err.errors[0]?.message || "An error occurred";
-        toast.error(errorMessage);
-        // if (err.errors[0]?.code === "form_identifier_exists") {
-        //   form.setError("username", {
-        //     message: "Username already exists",
-        //   });
-        // }
+        switch (err.errors[0].code) {
+          default:
+            toast.error(err.errors[0]?.message);
+            break;
+        }
+      } else {
+        toast.error("An unexpected error occurred. Please try again.");
+        console.log(err);
       }
-      console.error(JSON.stringify(err, null, 2));
     }
   };
 
@@ -85,7 +82,6 @@ export default function SignUpForm() {
     if (!isLoaded) return;
 
     try {
-      // Use the code the user provided to attempt verification
       const completeSignUp = await signUp.attemptEmailAddressVerification({
         code: data.pin,
       });
@@ -101,12 +97,18 @@ export default function SignUpForm() {
       }
     } catch (err: any) {
       if (isClerkAPIResponseError(err)) {
-        const errorMessage = err.errors[0]?.message || "An error occurred";
-        toast.error(errorMessage);
+        switch (err.errors[0].code) {
+          default:
+            toast.error(err.errors[0]?.message);
+            break;
+        }
+      } else {
+        toast.error("An unexpected error occurred. Please try again.");
+        console.log(err);
       }
-      console.error(JSON.stringify(err, null, 2));
     }
   };
+
   const { nextStep, backStep, step } = useMultiStepForm([
     <SignupStep1 key="step1" onSubmit={handleStep1} />,
     <SignupStep2 key="step3" onSubmit={handleStep2} />,
