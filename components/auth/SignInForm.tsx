@@ -93,7 +93,7 @@ export default function FormDemo() {
             </div>
 
             <Form {...form}>
-              <form>
+              <form onSubmit={form.handleSubmit(onSubmit)}>
                 <div className="grid gap-4">
                   <div className="grid gap-2">
                     <FormField
