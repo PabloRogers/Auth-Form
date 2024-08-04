@@ -108,10 +108,9 @@ export default function SignUpForm() {
     }
   };
   const { nextStep, backStep, step } = useMultiStepForm([
-    // <TestSignupStep1 />,
-    <SignupStep1 onSubmit={handleStep1} />,
-    <SignupStep2 onSubmit={handleStep2} />,
-    <EmailVerificationForm onSubmit={handlePasswordReset} />,
+    <SignupStep1 key="step1" onSubmit={handleStep1} />,
+    <SignupStep2 key="step3" onSubmit={handleStep2} />,
+    <EmailVerificationForm key="step3" onSubmit={handlePasswordReset} />,
   ]);
 
   return step;
