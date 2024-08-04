@@ -37,10 +37,6 @@ export default function ForgotPasswordStep3({
 }: ForgotPasswordStep3Props) {
   const { isLoaded } = useSignIn();
 
-  if (!isLoaded) {
-    return null;
-  }
-
   const form = useForm<TForgotPasswordResetSchema>({
     resolver: zodResolver(forgotPasswordResetSchema),
     defaultValues: {
@@ -48,6 +44,10 @@ export default function ForgotPasswordStep3({
       confirmPassword: "",
     },
   });
+
+  if (!isLoaded) {
+    return null;
+  }
 
   return (
     <div className="flex w-full h-screen items-center justify-center">

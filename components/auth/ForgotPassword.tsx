@@ -129,10 +129,9 @@ export default function TestForgotPassword() {
   };
 
   const { nextStep, backStep, step } = useMultiStepForm([
-    <ForgotPasswordStep1 onSubmit={handleSendEmailCode} />,
-    <EmailVerificationForm onSubmit={handleEmailVerification} />,
-    <ForgotPasswordStep3 onSubmit={handlePasswordReset} />,
+    <ForgotPasswordStep1 key="step1" onSubmit={handleSendEmailCode} />,
+    <EmailVerificationForm key="step2" onSubmit={handleEmailVerification} />,
+    <ForgotPasswordStep3 key="step3" onSubmit={handlePasswordReset} />,
   ]);
-
   return step;
 }
