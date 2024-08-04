@@ -13,7 +13,6 @@ import { toast } from "sonner";
 import SignupStep1 from "./SignupStep1";
 import SignupStep2 from "./SignupStep2";
 import { useMultiStepForm } from "../useMultiStepForm";
-import TestSignupStep1 from "./TestSignUpStep1";
 
 export default function SignUpForm() {
   const { signUp, isLoaded, setActive } = useSignUp();
