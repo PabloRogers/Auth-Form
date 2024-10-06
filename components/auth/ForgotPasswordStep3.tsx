@@ -1,17 +1,11 @@
 "use client";
 
 // Clerk imports
-import { useSignIn, useAuth } from "@clerk/nextjs";
-import { isClerkAPIResponseError } from "@clerk/nextjs/errors";
+import { useSignIn } from "@clerk/nextjs";
 
-// External library imports
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, set, useForm } from "react-hook-form";
-import { toast } from "sonner";
-
-// Local utility imports
+import { SubmitHandler, useForm } from "react-hook-form";
 import {
-  TForgotPasswordEmailSchema,
   TForgotPasswordResetSchema,
   forgotPasswordResetSchema,
 } from "@/lib/zod/schema";

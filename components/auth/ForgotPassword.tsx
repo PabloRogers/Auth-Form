@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactElement, useState } from "react";
+import React, { useState } from "react";
 import { useMultiStepForm } from "../useMultiStepForm";
 import ForgotPasswordStep1 from "./ForgotPasswordStep1";
 import EmailVerificationForm from "./EmailVerificationForm";

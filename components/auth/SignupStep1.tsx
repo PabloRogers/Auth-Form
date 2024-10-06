@@ -1,18 +1,9 @@
 "use client";
 
-// Next.js imports
 import Link from "next/link";
-
-// Clerk imports
-import { useSignUp } from "@clerk/nextjs";
-import { isClerkAPIResponseError } from "@clerk/nextjs/errors";
-
-// External library imports
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
 
-// Local component imports
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -25,8 +16,6 @@ import {
 } from "@/components/ui/form";
 import GoogleOAuth from "@/components/auth/GoogleOAuth";
 import GithubOAuth from "@/components/auth/GithubOAuth";
-
-// Local utility imports
 import { signupSchema, TSignupSchema } from "@/lib/zod/schema";
 import { ThemeToggle } from "../ThemeToggle";
 

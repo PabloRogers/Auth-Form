@@ -1,22 +1,7 @@
-// React imports
-import { useState } from "react";
-
-// Next.js imports
 import Link from "next/link";
-
-// Clerk imports
-import { useSignUp } from "@clerk/nextjs";
-import { isClerkAPIResponseError } from "@clerk/nextjs/errors";
-
-// External library imports
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
-
-// Local utility imports
 import { accountDetailsSchema, TAccountDetailsSchema } from "@/lib/zod/schema";
-
-// Local component imports
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {

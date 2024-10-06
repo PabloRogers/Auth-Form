@@ -1,31 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { redirect } from "next/navigation";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { FcGoogle } from "react-icons/fc";
-
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, TLoginSchema } from "@/lib/zod/schema";
-
-import { toast } from "sonner";
-
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
-import { useSignIn } from "@clerk/nextjs";
-import { isClerkAPIResponseError } from "@clerk/nextjs/errors";
 import GoogleOAuth from "./GoogleOAuth";
 import GithubOAuth from "./GithubOAuth";
 

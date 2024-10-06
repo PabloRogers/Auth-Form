@@ -1,24 +1,14 @@
-// Clerk imports
-import { useSignIn, useAuth } from "@clerk/nextjs";
-import { isClerkAPIResponseError } from "@clerk/nextjs/errors";
-
-// External library imports
+import { useSignIn } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, set, useForm } from "react-hook-form";
-import { toast } from "sonner";
-
-// Local utility imports
 import {
   TForgotPasswordEmailSchema,
   forgotPasswordEmailSchema,
 } from "@/lib/zod/schema";
-
-// Local component imports
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -26,7 +16,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { Dispatch, SetStateAction } from "react";
 
 type ForgotPasswordEmailProps = {
   onSubmit: SubmitHandler<TForgotPasswordEmailSchema>;
