@@ -30,7 +30,7 @@ import GoogleOAuth from "./GoogleOAuth";
 import GithubOAuth from "./GithubOAuth";
 import { ThemeToggle } from "../ThemeToggle";
 
-export default function FormDemo() {
+export default function SignInForm() {
   const form = useForm<TLoginSchema>({
     resolver: zodResolver(loginSchema),
   });

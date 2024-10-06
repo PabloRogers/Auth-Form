@@ -1,15 +1,8 @@
-// Clerk imports
 import { useSignUp } from "@clerk/nextjs";
 import { isClerkAPIResponseError } from "@clerk/nextjs/errors";
-
-// External library imports
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-
-// Local utility imports
-
-// Local component imports
 import { Button } from "@/components/ui/button";
 import {
   Form,
