@@ -17,11 +17,14 @@ import {
 } from "@/components/ui/form";
 import { useSignIn } from "@clerk/nextjs";
 import { isClerkAPIResponseError } from "@clerk/nextjs/errors";
-import GoogleOAuth from "./GoogleOAuth";
-import GithubOAuth from "./GithubOAuth";
-import { ThemeToggle } from "../ThemeToggle";
+import GoogleOAuth from "@/features/auth/components/GoogleOAuth";
+import GithubOAuth from "@/features/auth/components/GithubOAuth";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { FC } from "react";
 
-export default function SignInForm() {
+interface SignInFormProps {}
+
+export const SignInForm: FC<SignInFormProps> = () => {
   const form = useForm<TLoginSchema>({
     resolver: zodResolver(loginSchema),
   });
@@ -174,4 +177,4 @@ export default function SignInForm() {
       </div>
     </>
   );
-}
+};

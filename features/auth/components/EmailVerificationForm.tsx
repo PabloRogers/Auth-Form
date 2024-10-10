@@ -16,14 +16,15 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { TVerifyEmailSchema, verifyEmailSchema } from "@/lib/zod/schema";
+import { FC } from "react";
 
 interface EmailVerificationFormProps {
   onSubmit: SubmitHandler<TVerifyEmailSchema>;
 }
 
-export default function EmailVerificationForm({
+export const EmailVerificationForm: FC<EmailVerificationFormProps> = ({
   onSubmit,
-}: EmailVerificationFormProps) {
+}) => {
   const form = useForm<TVerifyEmailSchema>({
     resolver: zodResolver(verifyEmailSchema),
   });
@@ -66,4 +67,4 @@ export default function EmailVerificationForm({
       </Form>
     </div>
   );
-}
+};

@@ -16,14 +16,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { FC } from "react";
 
-type ForgotPasswordEmailProps = {
+interface ForgotPasswordEmailProps {
   onSubmit: SubmitHandler<TForgotPasswordEmailSchema>;
-};
+}
 
-export default function ForgotPasswordStep1({
+export const ForgotPasswordStep1: FC<ForgotPasswordEmailProps> = ({
   onSubmit,
-}: ForgotPasswordEmailProps) {
+}) => {
   const { isLoaded, signIn, setActive } = useSignIn();
 
   const form = useForm<TForgotPasswordEmailSchema>({
@@ -95,4 +96,4 @@ export default function ForgotPasswordStep1({
       </div>
     </div>
   );
-}
+};

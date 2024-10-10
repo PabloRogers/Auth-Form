@@ -12,12 +12,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { FC } from "react";
 
-type AccountDetailsFormProps = {
+interface SignupStep2Props {
   onSubmit: SubmitHandler<TAccountDetailsSchema>;
-};
+}
 
-export default function SignupStep2({ onSubmit }: AccountDetailsFormProps) {
+export const SignupStep2: FC<SignupStep2Props> = ({ onSubmit }) => {
   const form = useForm<TAccountDetailsSchema>({
     resolver: zodResolver(accountDetailsSchema),
   });
@@ -126,4 +127,4 @@ export default function SignupStep2({ onSubmit }: AccountDetailsFormProps) {
       </div>
     </div>
   );
-}
+};

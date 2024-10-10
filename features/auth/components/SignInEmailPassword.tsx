@@ -16,12 +16,15 @@ import {
 } from "@/components/ui/form";
 import GoogleOAuth from "./GoogleOAuth";
 import GithubOAuth from "./GithubOAuth";
+import { FC } from "react";
 
-type SignInEmailPassword = {
+interface SignInEmailPasswordProps {
   onSubmit: SubmitHandler<TLoginSchema>;
-};
+}
 
-export default function SignInEmailPassword({ onSubmit }: SignInEmailPassword) {
+export const SignInEmailPassword: FC<SignInEmailPasswordProps> = ({
+  onSubmit,
+}) => {
   const form = useForm<TLoginSchema>({
     resolver: zodResolver(loginSchema),
   });
@@ -126,4 +129,4 @@ export default function SignInEmailPassword({ onSubmit }: SignInEmailPassword) {
       </div>
     </div>
   );
-}
+};

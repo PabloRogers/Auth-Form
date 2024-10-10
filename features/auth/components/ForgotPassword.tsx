@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
-import { useMultiStepForm } from "../useMultiStepForm";
-import ForgotPasswordStep1 from "./ForgotPasswordStep1";
-import EmailVerificationForm from "./EmailVerificationForm";
-import ForgotPasswordStep3 from "./ForgotPasswordStep3";
+import React, { FC, useState } from "react";
+import { useMultiStepForm } from "@/features/auth/hooks/useMultiStepForm";
+import { ForgotPasswordStep1 } from "@/features/auth/components/ForgotPasswordStep1";
+import { EmailVerificationForm } from "@/features/auth/components/EmailVerificationForm";
+import { ForgotPasswordStep3 } from "@/features/auth/components/ForgotPasswordStep3";
 import { SubmitHandler } from "react-hook-form";
 import {
   TForgotPasswordEmailSchema,
@@ -22,7 +22,7 @@ export interface ForgotPasswordSchema {
   newPassword: string;
 }
 
-export default function TestForgotPassword() {
+export const ForgotPassword: FC = () => {
   const [datas, setDatas] = useState<ForgotPasswordSchema>({
     email: "",
     code: "",
@@ -134,4 +134,4 @@ export default function TestForgotPassword() {
     <ForgotPasswordStep3 key="step3" onSubmit={handlePasswordReset} />,
   ]);
   return step;
-}
+};

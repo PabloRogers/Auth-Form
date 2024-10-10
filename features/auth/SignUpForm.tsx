@@ -1,5 +1,5 @@
 "use client";
-import EmailVerificationForm from "./EmailVerificationForm";
+import { EmailVerificationForm } from "@/features/auth/components/EmailVerificationForm";
 import { SubmitHandler } from "react-hook-form";
 import {
   TAccountDetailsSchema,
@@ -10,14 +10,17 @@ import {
 import { useSignUp } from "@clerk/nextjs";
 import { isClerkAPIResponseError } from "@clerk/nextjs/errors";
 import { toast } from "sonner";
-import SignupStep1 from "./SignupStep1";
-import SignupStep2 from "./SignupStep2";
-import { useMultiStepForm } from "../useMultiStepForm";
+import { SignupStep1 } from "@/features/auth/components/SignupStep1";
+import { SignupStep2 } from "@/features/auth/components/SignupStep2";
+import { useMultiStepForm } from "@/features/auth/hooks/useMultiStepForm";
+import { FC } from "react";
 
-export default function SignUpForm() {
+interface SignUpFormProps {}
+
+export const SignUpForm: FC<SignUpFormProps> = () => {
   const { signUp, isLoaded, setActive } = useSignUp();
 
-  const handleStep1: SubmitHandler<TSignupSchema> = async (data) => {
+  const handleEmailPassword: SubmitHandler<TSignupSchema> = async (data) => {
     const { email, password } = signupSchema.parse(data);
     if (!isLoaded) return;
 
@@ -43,7 +46,9 @@ export default function SignUpForm() {
     }
   };
 
-  const handleStep2: SubmitHandler<TAccountDetailsSchema> = async (data) => {
+  const handleAccountInfo: SubmitHandler<TAccountDetailsSchema> = async (
+    data
+  ) => {
     if (!isLoaded) return;
 
     //Updates the sign-up process using the username and firstname and lastname provided
@@ -75,7 +80,7 @@ export default function SignUpForm() {
     }
   };
 
-  const handlePasswordReset: SubmitHandler<TVerifyEmailSchema> = async (
+  const handleCompleteSignUp: SubmitHandler<TVerifyEmailSchema> = async (
     data
   ) => {
     if (!isLoaded) return;
@@ -109,10 +114,10 @@ export default function SignUpForm() {
   };
 
   const { nextStep, backStep, step } = useMultiStepForm([
-    <SignupStep1 key="step1" onSubmit={handleStep1} />,
-    <SignupStep2 key="step3" onSubmit={handleStep2} />,
-    <EmailVerificationForm key="step3" onSubmit={handlePasswordReset} />,
+    <SignupStep1 key="step1" onSubmit={handleEmailPassword} />,
+    <SignupStep2 key="step2" onSubmit={handleAccountInfo} />,
+    <EmailVerificationForm key="step3" onSubmit={handleCompleteSignUp} />,
   ]);
 
   return step;
-}
+};

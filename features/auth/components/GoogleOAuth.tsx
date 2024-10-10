@@ -4,13 +4,14 @@ import * as React from "react";
 import { OAuthStrategy } from "@clerk/types";
 import { useSignIn, useSignUp } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { toast } from "sonner";
+import { FC } from "react";
 
-export interface GithubOAuthProps
+export interface GoogleOAuthProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-const GithubOAuth: React.FC<GithubOAuthProps> = (props) => {
+const GoogleOAuth: FC<GoogleOAuthProps> = (props) => {
   const { signIn } = useSignIn();
   const { signUp, setActive } = useSignUp();
 
@@ -18,7 +19,7 @@ const GithubOAuth: React.FC<GithubOAuthProps> = (props) => {
 
   const signInWith = (strategy: OAuthStrategy) => {
     return signIn.authenticateWithRedirect({
-      strategy,
+      strategy: "oauth_google",
       redirectUrl: "/sign-up/sso-callback",
       redirectUrlComplete: "/",
     });
@@ -68,7 +69,7 @@ const GithubOAuth: React.FC<GithubOAuthProps> = (props) => {
         signInWith(strategy);
       }
     } catch (err: any) {
-      console.error(err);
+      console.error(JSON.stringify(err, null, 2));
     }
   }
 
@@ -77,21 +78,21 @@ const GithubOAuth: React.FC<GithubOAuthProps> = (props) => {
   return (
     <Button
       variant="outline"
-      onClick={async () => {
-        await toast.promise(handleSignIn("oauth_github"), {
+      onClick={() => {
+        toast.promise(handleSignIn("oauth_google"), {
           loading: "Loading...",
           success: () => {
-            return `Successfully signed in with Github!`;
+            return `Successfully signed in with Google!!`;
           },
           error: "Error",
         });
       }}
       {...props}
     >
-      <FaGithub className="mr-2 h-5 w-5" />
+      <FcGoogle className="mr-2 h-5 w-5" />
       {props.children}
     </Button>
   );
 };
 
-export default GithubOAuth;
+export default GoogleOAuth;

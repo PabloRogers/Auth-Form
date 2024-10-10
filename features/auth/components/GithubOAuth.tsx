@@ -4,21 +4,22 @@ import * as React from "react";
 import { OAuthStrategy } from "@clerk/types";
 import { useSignIn, useSignUp } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 import { toast } from "sonner";
+import { FC } from "react";
 
-export interface GoogleOAuthProps
+export interface GithubOAuthProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-const GoogleOAuth: React.FC<GoogleOAuthProps> = (props) => {
+const GithubOAuth: FC<GithubOAuthProps> = (props) => {
   const { signIn } = useSignIn();
   const { signUp, setActive } = useSignUp();
 
   if (!signIn || !signUp) return null;
 
-  const signInWith = (strategy: OAuthStrategy) => {
+  const signInWithGithub = () => {
     return signIn.authenticateWithRedirect({
-      strategy,
+      strategy: "oauth_github",
       redirectUrl: "/sign-up/sso-callback",
       redirectUrlComplete: "/",
     });
@@ -65,10 +66,10 @@ const GoogleOAuth: React.FC<GoogleOAuthProps> = (props) => {
       } else {
         // If the user has an account in your application
         // and has an OAuth account connected to it, you can sign them in.
-        signInWith(strategy);
+        signInWithGithub();
       }
     } catch (err: any) {
-      console.error(JSON.stringify(err, null, 2));
+      console.error(err);
     }
   }
 
@@ -77,21 +78,21 @@ const GoogleOAuth: React.FC<GoogleOAuthProps> = (props) => {
   return (
     <Button
       variant="outline"
-      onClick={() => {
-        toast.promise(handleSignIn("oauth_google"), {
+      onClick={async () => {
+        await toast.promise(handleSignIn("oauth_github"), {
           loading: "Loading...",
           success: () => {
-            return `Successfully signed in with Google!!`;
+            return `Successfully signed in with Github!`;
           },
           error: "Error",
         });
       }}
       {...props}
     >
-      <FcGoogle className="mr-2 h-5 w-5" />
+      <FaGithub className="mr-2 h-5 w-5" />
       {props.children}
     </Button>
   );
 };
 
-export default GoogleOAuth;
+export default GithubOAuth;

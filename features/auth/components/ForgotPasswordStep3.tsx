@@ -1,16 +1,12 @@
 "use client";
 
-// Clerk imports
 import { useSignIn } from "@clerk/nextjs";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
   TForgotPasswordResetSchema,
   forgotPasswordResetSchema,
 } from "@/lib/zod/schema";
-
-// Local component imports
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -21,14 +17,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { FC } from "react";
 
 type ForgotPasswordStep3Props = {
   onSubmit: SubmitHandler<TForgotPasswordResetSchema>;
 };
 
-export default function ForgotPasswordStep3({
+export const ForgotPasswordStep3: FC<ForgotPasswordStep3Props> = ({
   onSubmit,
-}: ForgotPasswordStep3Props) {
+}) => {
   const { isLoaded } = useSignIn();
 
   const form = useForm<TForgotPasswordResetSchema>({
@@ -117,4 +114,4 @@ export default function ForgotPasswordStep3({
       </div>
     </div>
   );
-}
+};

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -14,16 +13,17 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import GoogleOAuth from "@/components/auth/GoogleOAuth";
-import GithubOAuth from "@/components/auth/GithubOAuth";
+import GoogleOAuth from "@/features/auth/components/GoogleOAuth";
+import GithubOAuth from "@/features/auth/components/GithubOAuth";
 import { signupSchema, TSignupSchema } from "@/lib/zod/schema";
-import { ThemeToggle } from "../ThemeToggle";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { FC } from "react";
 
-type SignUpFormProps = {
+interface SignUpFormProps {
   onSubmit: SubmitHandler<TSignupSchema>;
-};
+}
 
-export default function SignupStep1({ onSubmit }: SignUpFormProps) {
+export const SignupStep1: FC<SignUpFormProps> = ({ onSubmit }) => {
   const form = useForm<TSignupSchema>({
     resolver: zodResolver(signupSchema),
   });
@@ -147,4 +147,4 @@ export default function SignupStep1({ onSubmit }: SignUpFormProps) {
       </div>
     </>
   );
-}
+};
