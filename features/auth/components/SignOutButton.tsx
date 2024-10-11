@@ -3,7 +3,7 @@ import { useClerk } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
-export default function SignOutButton({}) {
+export const SignOutButton = () => {
   const { signOut } = useClerk();
   return (
     <Button
@@ -15,4 +15,4 @@ export default function SignOutButton({}) {
       Sign Out
     </Button>
   );
-}
+};
