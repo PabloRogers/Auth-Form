@@ -14,8 +14,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import GoogleOAuth from "./GoogleOAuth";
-import GithubOAuth from "./GithubOAuth";
+import GoogleOAuth from "@/features/auth/components/GoogleOAuth";
+import GithubOAuth from "@/features/auth/components/GithubOAuth";
 import { FC } from "react";
 
 interface SignInEmailPasswordProps {
