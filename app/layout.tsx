@@ -6,9 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ClerkProvider } from "@clerk/nextjs";
-
 import { Toaster } from "@/components/ui/sonner";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const metadata: Metadata = {
   title: "Create Next App",

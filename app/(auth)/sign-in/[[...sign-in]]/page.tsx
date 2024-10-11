@@ -9,5 +9,4 @@ export default async function SignIn() {
     redirect("/");
   }
   return <SignInForm />;
-  // return <TestSignIn />;
 }
